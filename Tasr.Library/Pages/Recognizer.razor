@@ -1,0 +1,49 @@
+﻿@page "/recognizer"
+@using BootstrapBlazor.Components 
+@using System.Reflection.Metadata
+@using Tasr.Library.Services
+@inject INavigationService _navigationService
+@inject IRecordingService _recordingService
+@inject IDeliverService _deliverService
+@inject ToastService _toastService
+<h3 class="title">语音输入界面</h3>
+<Button OnClick="()=>_navigationService.NavigateTo(NavigationServiceConstants.HomePage)">返回</Button>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-header">
+					<h4>录制语音</h4>
+				</div>
+				<div class="card-body">
+					<audio id="player" controls></audio>
+					@if (isRecording)
+					{
+						<Button OnClick="PauseRecording" Color="Color.Secondary">暂停录音</Button>
+						<Button OnClick="StopRecording" Color="Color.Danger">结束录音</Button>
+					}
+					else if (isPaused)
+					{
+						<Button OnClick="ResumeRecording" Color="Color.Primary">继续录音</Button>
+						<Button OnClick="StopRecording" Color="Color.Danger">结束录音</Button>
+					}
+					else
+					{
+						<Button OnClick="StartRecording" Color="Color.Primary">开始录音</Button>
+					}
+					<Button OnClick="UploadAudio" Color="Color.Info">上传语音</Button>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-header">
+					<h4>语音识别结果</h4>
+				</div>
+				<div class="card-body">
+					<p id="result" class="text-muted">暂无结果</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

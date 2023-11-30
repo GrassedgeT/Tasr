@@ -43,6 +43,10 @@ main {
     .top-row a, .top-row .btn-link {
         margin-left: 0;
     }
+     .content{
+        height: 100%;
+    }
+
 }
 
 @media (min-width: 641px) {
@@ -66,5 +70,9 @@ main {
     .top-row, article {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
+    }
+
+    .content{
+        height: 100%;
     }
 }

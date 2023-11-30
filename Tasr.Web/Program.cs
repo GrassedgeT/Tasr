@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Tasr.Web.Data;
+using Tasr.Library;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddBootstrapBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
 var app = builder.Build();

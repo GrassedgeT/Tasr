@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using Tasr.Data;
+using Tasr.Library.Services;
+using Tasr.Library.Services.Impl;
+using Tasr.Services.Impl;
 
 namespace Tasr;
 
@@ -24,7 +27,11 @@ public static class MauiProgram
 #endif
 
 		builder.Services.AddSingleton<WeatherForecastService>();
-
+        builder.Services.AddScoped<IAudioService, AudioService>();
+		builder.Services.AddScoped<IAlertService, AlertService>();
+		builder.Services.AddScoped<IAudioToTextService, AudioToService>();
+		builder.Services.AddScoped<INavigationService, NavigationService>();
+		builder.Services.AddScoped<IParcelBoxService, ParcelBoxService>();
 		return builder.Build();
 	}
 }

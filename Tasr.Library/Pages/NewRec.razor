@@ -1,9 +1,16 @@
 ﻿@page "/newtask"
+@using Tasr.Library.Services
+@inject IAudioService _audioService
+@inject IAudioToTextService _AudioToTextService
 
 <h1 style="text-align: center; margin-top:15%">创建新的总结任务</h1>
-<div class="btnDiv">
-    <button class="auBtn upload">上传音频</button>
-    <button class="auBtn record">实时录制</button>
-</div>
 
 
+<Stack IsRow="true" Justify="StackJustifyContent.Evenly" AlignItems="StackAlignItems.Stretch" IsReverse="false" IsWrap="false">
+    <StackItem>
+            <Button Size="Size.ExtraExtraLarge" OnClick="PickAsync">上传录音</Button>
+    </StackItem>
+    <StackItem>
+            <Button Size="Size.ExtraExtraLarge" Color="Color.Success" OnClick="RecordAsync">实时录音</Button>
+    </StackItem>
+</Stack>

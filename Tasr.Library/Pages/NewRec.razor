@@ -1,16 +1,39 @@
 ﻿@page "/newtask"
 @using Tasr.Library.Services
+@using Microsoft.Extensions.Logging
 @inject IAudioService _audioService
 @inject IAudioToTextService _AudioToTextService
+@inject ILogger<NewRec> Logger
 
-<h1 style="text-align: center; margin-top:15%">创建新的总结任务</h1>
+<h1 style="text-align: center; margin-top:15%; margin-bottom: 10%">创建新的总结任务</h1>
 
 
 <Stack IsRow="true" Justify="StackJustifyContent.Evenly" AlignItems="StackAlignItems.Stretch" IsReverse="false" IsWrap="false">
     <StackItem>
-            <Button Size="Size.ExtraExtraLarge" OnClick="PickAsync">上传录音</Button>
+        <Button Size="Size.ExtraExtraLarge" OnClick="PickAsync">上传录音</Button>
     </StackItem>
     <StackItem>
-            <Button Size="Size.ExtraExtraLarge" Color="Color.Success" OnClick="RecordAsync">实时录音</Button>
+        <Button Size="Size.ExtraExtraLarge" Color="Color.Success" OnClick="RecordAsync">实时录音</Button>
     </StackItem>
 </Stack>
+
+@code
+{
+    private async Task PickAsync()
+    {
+        var bytes = await _audioService.PickAudioAsync();
+
+        if (bytes is null)
+        {
+            return;
+        }
+        string result =  await _AudioToTextService.FileToTextAsync(bytes);
+        
+        Logger.LogInformation(result); 
+    }
+
+    private async Task RecordAsync()
+    {
+        await _audioService.RecordAudioAsync();
+    }
+}

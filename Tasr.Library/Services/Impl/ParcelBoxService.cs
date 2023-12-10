@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tasr.Library.Services.Impl
 {
-    internal class ParcelBoxService : IParcelBoxService
+    public class ParcelBoxService : IParcelBoxService
     {
         private readonly Dictionary<string, object> _box = new Dictionary<string, object>();
         public string Put(object o)

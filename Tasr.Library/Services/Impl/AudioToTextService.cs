@@ -24,11 +24,11 @@ namespace Tasr.Library.Services.Impl
             using var httpClient = new HttpClient();
 
             using var formData = new MultipartFormDataContent();
-            formData.Add(new ByteArrayContent(audio), "file", "audio.wav");
+            formData.Add(new ByteArrayContent(audio), "File", "audio.wav");
             HttpResponseMessage response;
             try
             {
-                response = await httpClient.PostAsync("http://localhost:8080/home/audiotoText", formData);
+                response = await httpClient.PostAsync("http://localhost:5182/home/FileToText", formData);
                 response.EnsureSuccessStatusCode();
             }
             catch (Exception e)

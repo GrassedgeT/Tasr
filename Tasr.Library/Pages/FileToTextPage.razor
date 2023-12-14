@@ -1,0 +1,38 @@
+﻿@page "/FileToTextPage/{ticket}"
+@using Tasr.Library.Services
+@using Tasr.Models
+@inject INavigationService _navigationService
+@inject IParcelBoxService _parcelBoxService
+<div style="height:100%">
+    @if (_result is null)
+    {
+        <div style="display:flex; align-items:center; justify-content:center; width:100%; height:100%; flex-direction: column">
+            <h3 style="margin: 15px">音频识别中</h3>
+            <Spinner Color="Color.Primary" Size="Size.ExtraExtraLarge"></Spinner>
+        </div>
+    }
+    else
+    {
+        <div class="main-container">
+            <div class="left-div">
+                <h5 style="text-align: center">识别结果</h5>
+            </div>
+            <div class="right-div">
+                <h5 style="text-align: center">总结内容</h5>
+            </div>
+        </div>
+        <div class="bottom-div">
+            <div class="btndiv">
+                <Button Color="Color.Primary" OnClick="@ToSummary">@summaryBtnText</Button>
+            </div>
+            @if (isSummary){
+                <div class="btndiv">
+                    <Button Color="Color.Success" OnClick="@Save">保存数据</Button>
+                </div>
+                <div class="btndiv">
+                    <Button Color="Color.Info" OnClick="@Export">导出数据</Button>
+                </div>
+            }
+        </div>
+    }
+</div>

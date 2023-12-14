@@ -1,10 +1,9 @@
 ﻿@page "/newtask"
 @using Tasr.Library.Services
-@using Microsoft.Extensions.Logging
+@using Tasr.Models;
 @inject IAudioService _audioService
 @inject IAudioToTextService _AudioToTextService
-@inject ILogger<NewRec> Logger
-
+@inject INavigationService _navigationService
 <h1 style="text-align: center; margin-top:15%; margin-bottom: 10%">创建新的总结任务</h1>
 
 
@@ -27,9 +26,8 @@
         {
             return;
         }
-        string result =  await _AudioToTextService.FileToTextAsync(bytes);
-        
-        Logger.LogInformation(result); 
+        Task<FileToTextResult> task =  _AudioToTextService.FileToTextAsync(bytes);
+        _navigationService.NavigateTo(NavigationServiceConstants.FileToTextPage, task);
     }
 
     private async Task RecordAsync()

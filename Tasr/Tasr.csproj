@@ -57,8 +57,4 @@
       <ProjectReference Include="..\Tasr.Library\Tasr.Library.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Models\" />
-    </ItemGroup>
-
 </Project>

@@ -7,18 +7,47 @@
     @if (_result is null)
     {
         <div style="display:flex; align-items:center; justify-content:center; width:100%; height:100%; flex-direction: column">
-            <h3 style="margin: 15px">音频识别中</h3>
-            <Spinner Color="Color.Primary" Size="Size.ExtraExtraLarge"></Spinner>
+            <h2 style="margin: 15px">音频识别中</h2>
+            <Spinner Color="Color.Primary" Size="Size.ExtraLarge"></Spinner>
         </div>
     }
     else
     {
         <div class="main-container">
             <div class="left-div">
-                <h5 style="text-align: center">识别结果</h5>
+                <h5 style="text-align: center; ">识别结果</h5>
+                <Divider/>
+                <div style="overflow:auto; height:91%; width:100%">
+                    @foreach (var sentence in _mergedSentences)
+                    {
+                        <div style="margin-top: 20px; padding-left:5px; padding-right:5px">
+                            <Card>
+                                <HeaderTemplate>
+                                    起止时间：@GetFormattedTime(sentence.Start) - @GetFormattedTime(sentence.End)
+                                </HeaderTemplate>
+                                <BodyTemplate>
+                                    <Textarea rows="4" IsDisabled="@(!_sentenceState[sentence.Start])" ShowLabel="false"  @bind-Value="@sentence.Text"/>
+                                </BodyTemplate>
+                                <FooterTemplate>
+                                    @if (!_sentenceState[sentence.Start])
+                                    {
+                                        <Button Size="Size.Small" OnClick="() => Edit(sentence.Start)">编辑</Button>
+                                    }
+                                    else
+                                    {
+                                        <div style="display:flex;">
+                                            <div style="margin-inline:10px"><Button Size="Size.Small" Color="Color.Primary" OnClick="() => FinEdit(sentence.Start)">完成</Button></div>     
+                                            <div style="margin-inline:10px"><Button Size="Size.Small" Color="Color.Danger" OnClick="() => DelSentence(sentence.Start)">删除</Button></div>
+                                        </div>
+                                    }
+                                </FooterTemplate>
+                            </Card>
+                        </div>
+                    }
+                </div>
             </div>
             <div class="right-div">
-                <h5 style="text-align: center">总结内容</h5>
+                <h5 style="text-align: center; ">总结内容</h5>
             </div>
         </div>
         <div class="bottom-div">

@@ -19,20 +19,26 @@ public class RecordingService :IRecordingService
 	//	throw new NotImplementedException();
 	//}
 
-	public async Task StartRecordingAsync(CancellationToken cancellationToken)
-	{
-		var isGranted = await _speechToText.RequestPermissions(cancellationToken);
-		if (!isGranted)
-		{
-			await _alertService.AlertAsync(ErrorMessages.RecordingErrorTitle,
-				"设备不支持语音输入。", ErrorMessages.RecordingErrorButton);
-			return;
-		}
+	//public async Task StartRecordingAsync(CancellationToken cancellationToken)
+	//{
+	//	var isGranted = await _speechToText.RequestPermissions(cancellationToken);
+	//	if (!isGranted)
+	//	{
+	//		await _alertService.AlertAsync(ErrorMessages.RecordingErrorTitle,
+	//			"设备不支持语音输入。", ErrorMessages.RecordingErrorButton);
+	//		return;
+	//	}
 
-		//_speechToText.RecognitionResultUpdated += OnRecognitionTextUpdated;
-		_speechToText.StartListenAsync(CultureInfo.CurrentCulture, CancellationToken.None);
+	//	//_speechToText.RecognitionResultUpdated += OnRecognitionTextUpdated;
+	//	_speechToText.StartListenAsync(CultureInfo.CurrentCulture, CancellationToken.None);
+	//}
+
+
+
+	public Task StartRecordingAsync()
+	{
+		throw new NotImplementedException();
 	}
-	
 
 	public Task PauseRecordingAsync()
 	{

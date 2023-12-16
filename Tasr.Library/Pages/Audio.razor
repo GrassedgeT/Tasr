@@ -1,7 +1,29 @@
 ﻿@page "/audio"
 @inject INavigationService _navigationService
+@inject IFileService _fileService
 @using Tasr.Library.Services
 <Button OnClick="()=>_navigationService.NavigateTo(NavigationServiceConstants.HomePage)">返回</Button>
-@code {
-
+<div class="row g-3">
+	<div class="col-12 col-sm-6">
+		<h2>选择需要进行语音转文本的文件</h2>
+		<ButtonUpload TValue="string" IsMultiple="true" ShowProgress="true" OnChange="@OnClickToUpload" OnDelete="@(fileName => Task.FromResult(true))"></ButtonUpload>
+	</div>
+</div>
+@if (_isUpload)
+{
+	<div class="shim-lg"></div>
+	@if (_isLoading)
+	{
+		<h1>
+			<Spinner></Spinner>  
+		</h1>
+	}
+	else
+	{
+		<p>@_result</p>
+		<Button OnClick="navigationToExport">编辑信息并导出为word文档</Button>
+		<br/>
+		<Button OnClick="navigationToSummary">文本总结</Button>
+	}
 }
+

@@ -1,7 +1,27 @@
-﻿@page "/summary"
+﻿@page "/summary/{ticket}"
 @inject INavigationService _navigationService
+@inject IAlertService _alterService
+@inject ISummarizeService _summarizeService
+@inject IParcelBoxService _parcelBoxService
 @using Tasr.Library.Services
 <Button OnClick="()=>_navigationService.NavigateTo(NavigationServiceConstants.HomePage)">返回</Button>
-@code {
+<br/>
+会议内容:<Textarea @bind-Value="meetingContent"></Textarea>
+<Button OnClick="summarize">进行会议总结</Button>
+@if (_isUpload)
+{
+	<div class="shim-lg"></div>
+	@if (_isLoading)
+	{
+		<h1>
+			<Spinner></Spinner>
+		</h1>
+	}
+	else
+	{
+		<h3>总结的内容是:</h3>
+		<p>@result</p>
 
+	}
+	
 }

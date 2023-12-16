@@ -1,0 +1,28 @@
+﻿@page "/export/{ticket}"
+@using Tasr.Library.Services
+@inject INavigationService  _navigationService
+@inject IParcelBoxService _parcelBoxService
+@inject IExportAsWord _exportAsWord
+<Button OnClick="()=>_navigationService.NavigateTo(NavigationServiceConstants.AudioPage)">返回</Button>
+<br/>
+会议时间主题:<BootstrapInput @bind-Value="Title"></BootstrapInput>
+会议主持人:<BootstrapInput @bind-Value="Host"></BootstrapInput>
+会议时间:<BootstrapInput @bind-Value="Time"></BootstrapInput>
+会议内容:<BootstrapInput @bind-Value="Content"></BootstrapInput>
+<Button OnClick="ExportAsWord">导出为word文档</Button>
+@if (_isUpload)
+{
+	<div class="shim-lg"></div>
+	@if (_isLoading)
+	{
+		<h1>
+			<Spinner></Spinner>
+		</h1>
+	}
+	else
+	{
+		<h3>生成的word文档路径为:</h3>
+		<p>@WordPath</p>
+		
+	}
+}

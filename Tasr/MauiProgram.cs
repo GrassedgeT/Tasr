@@ -35,7 +35,12 @@ public static class MauiProgram
 		builder.Services.AddScoped<IParcelBoxService, ParcelBoxService>();
 		builder.Services.AddScoped<IRecordingService, RecordingService>();
 		builder.Services.AddScoped<IDeliverService, DeliverService>();
+		builder.Services.AddScoped<IAlertService, AlertService>();
 		builder.Services.AddSingleton<ISpeechToText>(SpeechToText.Default);
+		builder.Services.AddScoped<IFileService, FileService>();
+		builder.Services.AddScoped<IExportAsWord, ExportAsWord>();
+		builder.Services.AddScoped<ISummarizeService, SummarizeService>();
+
 		return builder.Build();
 	}
 }

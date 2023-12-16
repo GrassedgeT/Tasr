@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Media;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Tasr.Library.Services;
@@ -15,6 +16,11 @@ builder.Services.AddScoped<INavigationService, NavigationService>();
 builder.Services.AddScoped<IParcelBoxService, ParcelBoxService>();
 builder.Services.AddScoped<IRecordingService, RecordingService>();
 builder.Services.AddScoped<IDeliverService, DeliverService>();
+builder.Services.AddScoped<IAlertService, AlertService>();
+
+builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<IExportAsWord, ExportAsWord>();
+builder.Services.AddScoped<ISummarizeService, SummarizeService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

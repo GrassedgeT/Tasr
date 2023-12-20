@@ -15,7 +15,7 @@ namespace Tasr.Library.Pages
 
         private FileToTextResult? _result;
 
-        private string? summaryResult;
+        private string? _summaryResult;
 
         private bool isSummary = false;
 
@@ -24,6 +24,8 @@ namespace Tasr.Library.Pages
         private List<Sentence> _mergedSentences;
 
         private Dictionary<int, bool> _sentenceState = new Dictionary<int, bool>();
+
+        private bool isSummarying = false;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -92,13 +94,17 @@ namespace Tasr.Library.Pages
             return mergedSentences;
         }   
 
-        public void ToSummary()
+        public async void ToSummary()
         {
+            isSummarying = true;
+            StateHasChanged();
             isSummary = true;
             summaryBtnText = "重新生成";
+            _summaryResult = await _summarizeService.GetSummaryAsync(_mergedSentences);
+            isSummarying = false;
             StateHasChanged();
         }
-        
+         
         public void Save()
         {
 

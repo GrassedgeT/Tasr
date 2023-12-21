@@ -1,0 +1,37 @@
+﻿@page "/newtask"
+@using Tasr.Library.Services
+@using Tasr.Models;
+@inject IAudioService _audioService
+@inject IAudioToTextService _AudioToTextService
+@inject INavigationService _navigationService
+<h1 style="text-align: center; margin-top:15%; margin-bottom: 10%">创建新的总结任务</h1>
+
+
+<Stack IsRow="true" Justify="StackJustifyContent.Evenly" AlignItems="StackAlignItems.Stretch" IsReverse="false" IsWrap="false">
+    <StackItem>
+        <Button Size="Size.ExtraExtraLarge" OnClick="PickAsync">上传录音</Button>
+    </StackItem>
+    <StackItem>
+        <Button Size="Size.ExtraExtraLarge" Color="Color.Success" OnClick="RecordAsync">实时录音</Button>
+    </StackItem>
+</Stack>
+
+@code
+{
+    private async Task PickAsync()
+    {
+        var bytes = await _audioService.PickAudioAsync();
+
+        if (bytes is null)
+        {
+            return;
+        }
+        Task<FileToTextResult> task =  _AudioToTextService.FileToTextAsync(bytes);
+        _navigationService.NavigateTo(NavigationServiceConstants.FileToTextPage, task);
+    }
+
+    private async Task RecordAsync()
+    {
+        await _audioService.RecordAudioAsync();
+    }
+}

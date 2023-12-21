@@ -1,16 +1,21 @@
-﻿namespace Tasr.Library.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public interface INavigationService
+namespace Tasr.Library.Services
 {
-	void NavigateTo(string uri);
+    public interface INavigationService
+    {
+        void NavigateTo(string uri);
+        void NavigateTo(string uri, object parameter);
+    }
 
-	void NavigateTo(string uri, object parameter);
-}
-public static class NavigationServiceConstants
-{
-	public const string RecognizerPage = "/recognizer";
-	public const string HomePage = "/home";
-	public const string AudioPage = "/audio";
-	public const string SummaryPage = "/summary";
-	public const string ExportPage = "/export";
+    public static class NavigationServiceConstants
+    {
+        public const string NewRec = "/newrec";
+        public const string History = "/history";
+        public const string FileToTextPage = "/FileToTextPage";
+    }
 }

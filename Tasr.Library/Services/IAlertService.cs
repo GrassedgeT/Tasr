@@ -1,6 +1,13 @@
-﻿namespace Tasr.Library.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public interface IAlertService
+namespace Tasr.Library.Services
 {
-	Task AlertAsync(string title, string message, string button);
+    public interface IAlertService
+    {
+        Task AlertAsync(string title, string message, string button);
+    }
 }

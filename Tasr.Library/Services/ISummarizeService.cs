@@ -1,6 +1,14 @@
-﻿namespace Tasr.Library.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Tasr.Models;
 
-public interface ISummarizeService
+namespace Tasr.Library.Services
 {
-	Task<string> SummarizeAsync(string meetingContent);
+    public interface ISummarizeService
+    {
+        Task<string> GetSummaryAsync(List<Sentence> sentences);
+    }
 }

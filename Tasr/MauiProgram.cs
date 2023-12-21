@@ -1,9 +1,8 @@
-﻿using CommunityToolkit.Maui;
-using CommunityToolkit.Maui.Media;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Tasr.Data;
 using Tasr.Library.Services;
-using Tasr.Services;
+using Tasr.Library.Services.Impl;
+using Tasr.Services.Impl;
 
 namespace Tasr;
 
@@ -14,16 +13,13 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 			});
 
 		builder.Services.AddMauiBlazorWebView();
-		builder.Services.AddBootstrapBlazor();
-		builder.Services.AddBootstrapBlazorBaiduSpeech();
-		
+        builder.Services.AddBootstrapBlazor();
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
@@ -31,16 +27,12 @@ public static class MauiProgram
 #endif
 
 		builder.Services.AddSingleton<WeatherForecastService>();
+        builder.Services.AddScoped<IAudioService, AudioService>();
+		builder.Services.AddScoped<IAlertService, AlertService>();
+		builder.Services.AddScoped<ISummarizeService, SummarizeService>();
+		builder.Services.AddScoped<IAudioToTextService, AudioToTextService>();
 		builder.Services.AddScoped<INavigationService, NavigationService>();
 		builder.Services.AddScoped<IParcelBoxService, ParcelBoxService>();
-		builder.Services.AddScoped<IRecordingService, RecordingService>();
-		builder.Services.AddScoped<IDeliverService, DeliverService>();
-		builder.Services.AddScoped<IAlertService, AlertService>();
-		builder.Services.AddSingleton<ISpeechToText>(SpeechToText.Default);
-		builder.Services.AddScoped<IFileService, FileService>();
-		builder.Services.AddScoped<IExportAsWord, ExportAsWord>();
-		builder.Services.AddScoped<ISummarizeService, SummarizeService>();
-
 		return builder.Build();
 	}
 }

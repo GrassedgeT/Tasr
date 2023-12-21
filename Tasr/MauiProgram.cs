@@ -33,6 +33,7 @@ public static class MauiProgram
 		builder.Services.AddScoped<IAudioToTextService, AudioToTextService>();
 		builder.Services.AddScoped<INavigationService, NavigationService>();
 		builder.Services.AddScoped<IParcelBoxService, ParcelBoxService>();
+		builder.Services.AddScoped<IExportService, ExportService>();
 		return builder.Build();
 	}
 }

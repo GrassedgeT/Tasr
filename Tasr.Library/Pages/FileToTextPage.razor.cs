@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BootstrapBlazor.Components;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tasr.Library.Models;
 using Tasr.Models;
 
 namespace Tasr.Library.Pages
@@ -110,9 +112,19 @@ namespace Tasr.Library.Pages
 
         }
 
-        public void Export()
+        public async void Export()
         {
-
+            ExportResult exportResult = new ExportResult();
+            exportResult.Time = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+            exportResult.SourceResult = "";
+            exportResult.SummaryResult = _summaryResult;
+            foreach (var sentence in _mergedSentences)
+            {
+                exportResult.SourceResult += GetFormattedTime(sentence.Start) + " - " + GetFormattedTime(sentence.End) + "\n";
+                exportResult.SourceResult += sentence.Text + "\n";                
+            }
+            var filePath = await _exportService.ExportAsWord(exportResult);
+            await _toastService.Success("导出成功", "导出文件已保存至："+filePath, autoHide:true);
         }
 
         public void Edit(int id)

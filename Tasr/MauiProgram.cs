@@ -29,6 +29,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<WeatherForecastService>();
         builder.Services.AddScoped<IAudioService, AudioService>();
 		builder.Services.AddScoped<IAlertService, AlertService>();
+		builder.Services.AddScoped<ISummarizeService, SummarizeService>();
 		builder.Services.AddScoped<IAudioToTextService, AudioToTextService>();
 		builder.Services.AddScoped<INavigationService, NavigationService>();
 		builder.Services.AddScoped<IParcelBoxService, ParcelBoxService>();

@@ -4,11 +4,11 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasr", "Tasr\Tasr.csproj", "{AAB5643C-68F0-4EDE-ACD2-5F6475A03897}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasr.Library", "Tasr.Library\Tasr.Library.csproj", "{74E62130-FC6D-4CAD-BE3A-DA06F8B3F8FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasr.Library", "Tasr.Library\Tasr.Library.csproj", "{74E62130-FC6D-4CAD-BE3A-DA06F8B3F8FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasr.UnitTest", "Tasr.UnitTest\Tasr.UnitTest.csproj", "{FBFFC4C5-BE7D-49F2-A2EA-61EC190E0CB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasr.UnitTest", "Tasr.UnitTest\Tasr.UnitTest.csproj", "{FBFFC4C5-BE7D-49F2-A2EA-61EC190E0CB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasr.Web", "Tasr.Web\Tasr.Web.csproj", "{7F4F5480-602C-44A1-8F80-12895461C3E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasr.Web", "Tasr.Web\Tasr.Web.csproj", "{7F4F5480-602C-44A1-8F80-12895461C3E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,7 +39,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		        SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
 		SolutionGuid = {FE9B3621-2435-41FF-B001-9D88DE2F2350}
+		        SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
 	EndGlobalSection
 EndGlobal

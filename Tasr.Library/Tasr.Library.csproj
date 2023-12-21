@@ -14,10 +14,8 @@
   <ItemGroup>
     <PackageReference Include="BootstrapBlazor" Version="8.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="TheSalLab.GeneralReturnValues" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

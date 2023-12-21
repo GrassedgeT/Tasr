@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BootstrapBlazor.Components;
+﻿using BootstrapBlazor.Components;
 
 namespace Tasr.Library.Services.Impl
 {
@@ -24,6 +19,5 @@ namespace Tasr.Library.Services.Impl
                 Content = message,
                 CloseButtonText = button
             });
-
     }
 }

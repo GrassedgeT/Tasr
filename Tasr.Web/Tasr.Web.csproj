@@ -14,8 +14,4 @@
     <ProjectReference Include="..\Tasr.Library\Tasr.Library.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

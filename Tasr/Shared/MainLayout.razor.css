@@ -8,6 +8,12 @@ main {
     flex: 1;
 }
 
+article {
+    display: flex;
+    flex-direction: column;
+    height: 90vh; /* 设置高度为视口高度，充满整个容器 */
+}
+
 .sidebar {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }

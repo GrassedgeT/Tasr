@@ -4,6 +4,7 @@ using Tasr.Web.Data;
 using Tasr.Library;
 using Tasr.Library.Services.Impl;
 using Tasr.Library.Services;
+using Tasr.Web.Services.Impl;
 
 var builder = WebApplication.CreateBuilder(args);
 

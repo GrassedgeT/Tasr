@@ -17,5 +17,6 @@ namespace Tasr.Library.Services
         public const string NewRec = "/newrec";
         public const string History = "/history";
         public const string FileToTextPage = "/FileToTextPage";
+        public const string Detail = "/detail";
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BootstrapBlazor.Components;
+using Microsoft.Extensions.Logging;
 using Tasr.Data;
 using Tasr.Library.Services;
 using Tasr.Library.Services.Impl;
@@ -27,12 +28,12 @@ public static class MauiProgram
 #endif
 
 		builder.Services.AddSingleton<WeatherForecastService>();
-        builder.Services.AddScoped<IAudioService, AudioService>();
 		builder.Services.AddScoped<IAlertService, AlertService>();
-		builder.Services.AddScoped<ISummarizeService, SummarizeService>();
 		builder.Services.AddScoped<IAudioToTextService, AudioToTextService>();
 		builder.Services.AddScoped<INavigationService, NavigationService>();
 		builder.Services.AddScoped<IParcelBoxService, ParcelBoxService>();
+		builder.Services.AddScoped<IMeetingStorage, MeetingStorage>();
+        builder.Services.AddScoped<IAudioService, AudioService>();
 		builder.Services.AddScoped<IExportService, ExportService>();
 		return builder.Build();
 	}

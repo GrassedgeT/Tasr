@@ -1,0 +1,30 @@
+
+
+
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 90%;
+    justify-content: space-around;
+}
+
+.left-div,
+.right-div {
+    /*flex: 1;*/ 
+    width: 47.5%;
+    height: 100%;
+    border: 2px solid #ccc; /* 为了可视化效果添加边框 */
+    border-radius: 10px;
+}
+
+.bottom-div {
+    margin-top:20px;
+    height: 8%;
+    display: flex;
+    justify-content: center; /* 按钮居中 */
+    align-items: center; /* 按钮居中 */
+    background-color: #f0f0f0; /* 为了可视化效果添加背景色 */
+}
+.btndiv {
+    margin: 20px;
+}

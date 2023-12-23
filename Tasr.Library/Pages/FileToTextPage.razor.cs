@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Tasr.Library.Models;
 using Tasr.Models;
 
@@ -29,13 +30,15 @@ namespace Tasr.Library.Pages
 
         private bool isSummarying = false;
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        private bool isInitialized = false;
+        MeetingTitle title=new MeetingTitle();
+		protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (! firstRender)
             {
                 return;
             }
-
+            
             if (string.IsNullOrEmpty(Ticket))
             {
                 return;
@@ -49,7 +52,11 @@ namespace Tasr.Library.Pages
             }
 
             _result = await parammeter;
-
+            if (!isInitialized)
+            {
+	            _meetingStorage.InitalizeDatabase();
+                isInitialized=true;
+            }
             _mergedSentences = MergeSentences(_result.Sentences);
 
             StateHasChanged();
@@ -107,10 +114,33 @@ namespace Tasr.Library.Pages
             StateHasChanged();
         }
          
-        public void Save()
+        public async Task Save()
         {
+			var option = new EditDialogOption<MeetingTitle>
+			{
+				Title = "会议名称",
+				Model = title,
+				OnEditAsync = context =>
+				{
+					if (!string.IsNullOrEmpty(title.Title))
+					{
+                        Meeting meeting = new Meeting();
+                        meeting.Title = title.Title;
+                        meeting.SummaryResult = _summaryResult;
+                        string resultToJson=JsonConvert.SerializeObject(_result);
+                        meeting.Result=resultToJson;
+                        string mergeSentencesToJson = JsonConvert.SerializeObject(_mergedSentences);
+                        meeting.MergeSentences=mergeSentencesToJson;
+                        _meetingStorage.AddMeetingAsync(meeting);
+                        meeting.Time=DateTime.Now;
+						return Task.FromResult(true);
+					}
 
-        }
+					return Task.FromResult(false);
+				}
+			};
+			await _dialogService.ShowEditDialog(option);
+		}
 
         public async void Export()
         {
@@ -144,5 +174,10 @@ namespace Tasr.Library.Pages
             _mergedSentences.Remove(_mergedSentences.Find(x => x.Start == id));
             StateHasChanged();
         }
+    }
+
+    public class MeetingTitle
+    {
+        public string Title { get; set; }
     }
 }

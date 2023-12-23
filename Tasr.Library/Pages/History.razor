@@ -1,1 +1,26 @@
 ﻿@page "/history"
+@inject IMeetingStorage _meetingStorage
+@inject DialogService _dialogService
+@inject INavigationService _navigationService
+<h5 style="text-align: center; ">历史会议</h5>
+<Divider/>
+<div style="overflow:auto; height:91%; width:100%">
+	@foreach (var meeting in meetings)
+	{
+		<div style="margin-top: 20px; padding-left:5px; padding-right:5px">
+			<Card>
+				<HeaderTemplate>
+					会议主题：@meeting.Title
+				</HeaderTemplate>
+				<BodyTemplate>
+					<Textarea rows="5"  @bind-Value="@meeting.SummaryResult" />
+				</BodyTemplate>
+				<FooterTemplate>
+					<div style="display:flex;">
+						<div style="margin-inline:10px"><Button Size="Size.Small" Color="Color.Primary" OnClick="() => CheckMeeting(meeting.Id)">查看</Button></div>     
+					</div>
+				</FooterTemplate>
+			</Card>
+		</div>
+	}
+</div>

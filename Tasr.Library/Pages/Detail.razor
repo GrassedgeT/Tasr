@@ -1,0 +1,38 @@
+﻿@page "/detail/{ticket}"
+@inject IParcelBoxService _parcelBoxService
+@inject INavigationService _navigationService
+<div style="height:100%">
+	<div class="main-container">
+		<div class="left-div">
+			<h5 style="text-align: center; ">会议记录</h5>
+			<Divider/>
+			<div style="overflow:auto; height:91%; width:100%">
+				@foreach (var sentence in _mergedSentences)
+				{
+					<div style="margin-top: 20px; padding-left:5px; padding-right:5px">
+						<Card>
+							<HeaderTemplate>
+								起止时间：@GetFormattedTime(sentence.Start)-@GetFormattedTime(sentence.End)
+							</HeaderTemplate>
+							<BodyTemplate>
+								<Textarea rows="5"  @bind-Value="@sentence.Text"></Textarea>
+							</BodyTemplate>
+						</Card>
+					</div>
+				}
+			</div>
+		</div>
+		<div class="right-div">
+			<h5 style="text-align: center; ">总结内容</h5>
+			<Divider/>
+			<div style="overflow:auto; height:91%; width:100%">
+				<Textarea rows="27" ShowLabel="false" @bind-Value="@_summaryResult" />
+			</div>
+		</div>
+	</div>
+	<div class="bottom-div">
+		<div class="btndiv">
+			<Button Color="Color.Success" OnClick="@Back">返回</Button>
+		</div>
+	</div>
+</div>

@@ -35,6 +35,7 @@ public static class MauiProgram
 		builder.Services.AddScoped<IMeetingStorage, MeetingStorage>();
         builder.Services.AddScoped<IAudioService, AudioService>();
 		builder.Services.AddScoped<IExportService, ExportService>();
+		builder.Services.AddScoped<ISummarizeService, SummarizeService>();
 		return builder.Build();
 	}
 }
